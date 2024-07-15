@@ -10,7 +10,9 @@ Evita Bloqueos: Accede a contenido restringido geográficamente.
 
 ## Funciona con
 [yt-dlp](https://github.com/yt-dlp/yt-dlp "yt-dlp"): Utilizada para la descarga y gestión de videos.
+
 PHP: Para la lógica del servidor y operaciones de backend.
+
 JavaScript: Para la interacción y funcionalidad en el navegador.
 
 ## Instalación
