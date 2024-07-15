@@ -22,12 +22,18 @@
         }
     }
 
-    vaciarCarpeta('/var/www/html/videos');
-
     if (isset($_GET['videoId'])) {
         $videoId = htmlspecialchars($_GET['videoId']);
-        $outputFile = "/var/www/html/videos/$videoId.mp4";
+        $ip = $_SERVER['REMOTE_ADDR'];
+        $userFolder = "/var/www/html/videos/$ip";
 
+        if (!file_exists($userFolder)) {
+            mkdir($userFolder, 0777, true);
+        } else {
+            vaciarCarpeta($userFolder);
+        }
+
+        $outputFile = "$userFolder/$videoId.mp4";
         $ytDlpPath = '/home/usuario/myenv/bin/yt-dlp';
 
         $command = "$ytDlpPath -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/mp4' --output '$outputFile' https://www.youtube.com/watch?v=$videoId 2>&1";
@@ -58,7 +64,7 @@
             echo "<pre>Código de retorno: $return_value</pre>";
 
             if (file_exists($outputFile)) {
-                echo "<script>window.location.href='play.php?videoId=$videoId';</script>";
+                echo "<script>window.location.href='play.php?videoId=$videoId&ip=$ip';</script>";
                 exit();
             } else {
                 echo "<p>Error al descargar el video.</p>";
@@ -73,3 +79,4 @@
     ?>
 </body>
 </html>
+
