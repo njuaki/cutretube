@@ -21,7 +21,7 @@ bash
 
 
     pip install yt-dlp
-    git clone https://github.com/tu-usuario/cutretube.git
+    git clone https://github.com/njuaki/cutretube.git
 
 
 Asegúrate de verificar y ajustar los directorios del servidor según sea necesario, incluyendo los permisos adecuados para el funcionamiento correcto de CutreTube en tu servidor.
